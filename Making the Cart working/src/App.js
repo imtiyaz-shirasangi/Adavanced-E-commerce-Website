@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import ProductList from "./components/Products/ProductList";
 import CartProvider from "./storage/Cart-Provider";
 import Home from "./components/Header/Home";
+import Contact from "./components/cart/Contact";
 
 // const router = createBrowserRouter([
 //   { path: "/", element: <p>Welcome</p> },
@@ -31,8 +32,10 @@ const App = () => {
       <Header onShowCart={showCartHandler} />
       <Routes>
         <Route path="/home" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/store" element={<ProductList />} />
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer />
     </CartProvider>
