@@ -5,13 +5,12 @@ function Footer() {
     <h1
       style={{
         padding: "1.5rem",
-        background: "#333",
+        background: "#233",
         marginTop: "180px",
         fontSize: "3rem",
         // width: "100%",
         textAlign: "center",
         color: "white",
-        bottom:'0',
       }}
     >
       The Generics

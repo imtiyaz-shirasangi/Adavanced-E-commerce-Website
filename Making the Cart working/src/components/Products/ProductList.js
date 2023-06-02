@@ -1,8 +1,11 @@
-import React from "react";
-import { Container} from "react-bootstrap";
+import React, { useContext } from "react";
+import { Container } from "react-bootstrap";
+import BottomCartButton from "../cart/BottomCartButton";
+import CartContext from "../../storage/CartContext";
 
 
-const ProdcutsArr = [
+
+const productsArr = [
   {
     id: 1,
     title: "Colors",
@@ -10,7 +13,6 @@ const ProdcutsArr = [
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
     quantity: 1,
   },
-
   {
     id: 2,
     title: "Black and white Colors",
@@ -32,28 +34,24 @@ const ProdcutsArr = [
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
     quantity: 1,
   },
-  {
-    id: 5,
-    title: "T-Shirt",
-    price: "19.99",
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Shirt.png",
-    quantity: 1,
-  },
-  {
-    id: 6,
-    title: "Coffee Cup",
-    price: 6.99,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Cofee.png",
-    quantity: 1,
-  },
 ];
-const ProductList = () => {
-  const product = ProdcutsArr.map((prod) => (
+
+const ProductsList = (props) => {
+
+  const cartCtx=useContext(CartContext);
+
+
+  const addItemHandler=item=>{
+    cartCtx.addItem({...item})
+  }
+
+  
+  const product = productsArr.map((prod) => (
     <div
       key={prod.id}
       style={{
         margin: "0 auto",
-        maxWidth: "100%",
+        maxWidth: "10%",
         padding: "20px 30px",
         display: "flex",
         justifyContent: "space-around",
@@ -77,21 +75,16 @@ const ProductList = () => {
         >
           {prod.title}
         </h2>
-        <div
-          style={{
-            margin: "20px",
-          }}
-        >
+        <div style={{ margin: "20px" }}>
           <img
             src={prod.imageUrl}
             alt={prod.title}
             style={{
-              transformOrigin: "center",
+              // transformOrigin: "center center",
               objectFit: "cover",
               padding: "0px",
               margin: "0px",
               transition: "ease-in 0.5s",
-              filter: "brightness(100%)",
               height: "250px",
               width: "250px",
             }}
@@ -99,7 +92,7 @@ const ProductList = () => {
         </div>
         <div
           style={{
-            margin: "30px",
+            margin: "20px",
             alignItems: "center",
             justifyContent: "space-between",
             background: "white",
@@ -107,19 +100,20 @@ const ProductList = () => {
             display: "flex",
           }}
         >
-          <span>Price :${prod.price}</span>
-          <button
+          <span> ${prod.price}</span>
+          <button onClick={()=>addItemHandler(prod)}
             style={{
-              cursor: "pointer",
+              
               padding: "8px",
+              color: "white",
               border: "none",
               fontSize: "15px",
               fontWeight: "bold",
-              background: "#56ccf2",
-              borderRadius:'10%',
+              borderRadius: "10%",
+              background: "#56CCF2",
             }}
           >
-            Add to Cart
+            Add To Cart
           </button>
         </div>
       </div>
@@ -128,10 +122,7 @@ const ProductList = () => {
 
   return (
     <Container
-      style={{
-        marginTop: "10px",
-        textAlign: "center",
-      }}
+      style={{ marginTop: "10px", textAlign: "center" }}
     >
       <h1
         style={{
@@ -140,14 +131,17 @@ const ProductList = () => {
           padding: "20px",
           fontSize: "30px",
           fontWeight: "bold",
-          fontStyle:'oblique',
+          fontStyle:"oblique"
         }}
       >
         MUSIC
       </h1>
-      <div>{product}</div>
+      <div> {product} </div>
+      <BottomCartButton onClick={props.onClick} />
+      
+      
     </Container>
   );
-  
 };
-export default ProductList;
+
+export default ProductsList;

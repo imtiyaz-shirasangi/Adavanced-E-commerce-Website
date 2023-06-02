@@ -25,4 +25,5 @@ return <div className={classes.backdrop} onClick={props.onClose} />
     </Fragment>
          
     }
+    
     export default Modal;

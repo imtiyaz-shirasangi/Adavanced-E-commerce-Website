@@ -1,13 +1,30 @@
 import { Container, Nav, Navbar, Button, NavLink } from "react-bootstrap";
 import React, { useContext } from "react";
 import CartContext from "../../storage/CartContext";
+import SignContext from "../../storage/Sign-Context";
+import { useHistory } from "react-router-dom";
 
 const Header = (props) => {
   const cartCtx = useContext(CartContext);
 
+  const SignCtx = useContext(SignContext);
+  const history = useHistory();
+
   const numberOfCartItems = cartCtx.items.reduce((currNumber, item) => {
     return currNumber + item.quantity;
   }, 0);
+
+  const isLoggedIn = SignCtx.isLoggedIn;
+
+  const loginHandler = () => {
+    SignCtx.login();
+  };
+
+  const logoutHandler = () => {
+    SignCtx.logout();
+    history.replace("/Login");
+  };
+
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
@@ -15,7 +32,7 @@ const Header = (props) => {
           <Navbar.Brand
             style={{
               textAlign: "center",
-              width: "40%",
+              width: "60%",
               color: "white",
             }}
             href="#home"
@@ -26,7 +43,7 @@ const Header = (props) => {
               textAlign: "center",
               display: "flex",
               justifyContent: "center",
-              padding: "10px",
+              padding: "20px",
               background: "black",
               color: "white",
               wordSpacing: 20,
@@ -38,6 +55,7 @@ const Header = (props) => {
                 marginRight: "25px",
                 textDecoration: "none",
                 color: "white",
+                fontFamily: "-moz-initial",
               }}
             >
               HOME
@@ -48,52 +66,112 @@ const Header = (props) => {
                 marginRight: "25px",
                 textDecoration: "none",
                 color: "white",
+                fontFamily: "-moz-initial",
               }}
             >
               STORE
             </Nav.Link>
             <Nav.Link
               href="/about"
+              to="/about"
               style={{
                 marginRight: "25px",
                 textDecoration: "none",
                 color: "white",
+                fontFamily: "-moz-initial",
               }}
             >
               ABOUT
             </Nav.Link>
             <NavLink
               href="/contact"
+              to="/contact"
               style={{
                 marginRight: "25px",
                 textDecoration: "none",
                 color: "white",
+                fontFamily: "-moz-initial",
               }}
             >
               CONTACTUS
             </NavLink>
+            {!isLoggedIn && (
+              <button
+                onClick={loginHandler}
+                style={{
+                  marginLeft: "20px",
+                  padding: "2px 10px",
+                  background: "black",
+                  border: "7px solid darkblack",
+                  borderRadius: "5px",
+                  color:'white',
+                  display: "flex",
+                  justifyContent: "end",
+                  fontSize: "1rem",
+                  listStyle: "none",
+                  cursor: "pointer",
+                  textAlign: "center",
+                  fontFamily: "-moz-initial",
+                }}
+              >
+                Login
+              </button>
+            )}
+            {isLoggedIn && (
+              <button
+                onClick={logoutHandler}
+                style={{
+                  marginLeft: "20px",
+                  padding: "0px 7px",
+                  background: "black",
+                  border: "7px solid darkblack",
+                  borderRadius: "3px",
+                  color: "white",
+                  display: "flex",
+                  justifyContent: "end",
+                  fontSize: "1rem",
+                  listStyle: "none",
+                  cursor: "pointer",
+                  alignItems: "center",
+                  fontFamily: "-moz-initial",
+                  textAlign: "center",
+                }}
+              >
+                Logout
+              </button>
+            )}
 
             <Button
               onClick={props.onShowCart}
               variant="outline-info"
               style={{
-                marginLeft: "20px",
+                marginLeft: "3rem",
                 padding: "0px 7px",
-                background: "lightblue",
-                border: "1px solid lightblue",
+                background: "black",
+                border: "7px solid darkblack",
                 borderRadius: "3px",
                 display: "flex",
                 justifyContent: "end",
+                color:'white',
                 fontSize: "1rem",
                 listStyle: "none",
                 cursor: "pointer",
+                alignItems: "center",
+                fontFamily: "-moz-initial",
               }}
             >
               cart
               <span
                 style={{
-                  marginLeft: "3px",
-                  top: "0",
+                  background: "black",
+                  marginLeft: "5px",
+                  display: "flex",
+                  justifyContent: "end",
+                  fontSize: "1rem",
+                  listStyle: "none",
+                  cursor: "pointer",
+                  alignItems: "center",
+                  fontFamily: "-moz-initial",
                 }}
               >
                 {numberOfCartItems}
@@ -109,7 +187,7 @@ const Header = (props) => {
           padding: "2rem",
           fontSize: "6.3rem",
           color: "white",
-          background: "#777",
+          background: "#233", //455
         }}
       >
         The Generics

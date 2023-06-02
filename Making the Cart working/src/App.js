@@ -3,20 +3,24 @@ import Header from "./components/Header/Header";
 import Cart from "./components/cart/Cart";
 import Footer from "./components/Footer/Footer";
 import About from "./components/Header/About";
-import { Routes, Route } from "react-router-dom";
-import ProductList from "./components/Products/ProductList";
-import CartProvider from "./storage/Cart-Provider";
+import { Route, Switch } from "react-router-dom";
+// import ProductList from "./components/Products/ProductList";
+// import CartProvider from "./storage/Cart-Provider";
 import Home from "./components/Header/Home";
 import Contact from "./components/cart/Contact";
+import ProductDetail from "./components/Products/ProductDetail";
+// import NoFound from "./components/Footer/NoFound";
+import Login from "./components/Header/Login";
+import { Redirect } from "react-router-dom";
+import { useContext } from "react";
+import SignContext from "./storage/Sign-Context";
+import Store from "./components/Products/Store";
 
-// const router = createBrowserRouter([
-//   { path: "/", element: <p>Welcome</p> },
-//   { path: "/store", element: <ProductList /> },
-//   { path: "/about", element: <About /> },
-// ]);
 
-const App = () => {
+
+function App() {
   const [showcart, setShowCart] = useState(false);
+  const SignCtx = useContext(SignContext);
 
   const showCartHandler = () => {
     setShowCart(true);
@@ -26,19 +30,55 @@ const App = () => {
     setShowCart(false);
   };
 
+  // const isLoggedIn = SignCtx.isLoggedIn;
+
   return (
-    <CartProvider>
+    <>
       {showcart && <Cart onClose={hideCartHandler} />}
       <Header onShowCart={showCartHandler} />
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/store" element={<ProductList />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
+      {/* <main>
+      <ProductsList  onClick={showCartHander}/>
+      </main> */}
+
+      {/* <Route path='/home' element={<Home />} />
+      <Route path='store' element={<ProductsList />} />
+      <Route path='about' element={<About />} />
+      <Route path='/contactus' element={<Contactus />} /> */}
+      <main>
+        <Switch>
+          <Route path="/" exact>
+            <Redirect to="/login" />
+          </Route>
+
+          <Route path="/home" exact>
+            <Home />
+          </Route>
+
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/store" exact>
+            {SignCtx.token && <Store onClick={showCartHandler} />}
+            {!SignCtx.token && <Redirect to="/login" />}
+          </Route>
+
+          <Route path="/contact">
+            <Contact />
+          </Route>
+          {SignCtx.token && (
+            <Route path="/store/:productId">
+              <ProductDetail />
+            </Route>
+          )}
+        </Switch>
+        <Route path="/login">
+          <Login />{" "}
+        </Route>
+      </main>
+
       <Footer />
-    </CartProvider>
+    </>
   );
-};
+}
+
 export default App;

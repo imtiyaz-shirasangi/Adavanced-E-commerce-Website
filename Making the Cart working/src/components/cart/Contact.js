@@ -2,9 +2,9 @@ import React, { useRef } from "react";
 import classes from "./Contact.module.css";
 
 const Contact = (props) => {
-  const nameRef = useRef(" ");
+  const nameRef = useRef("");
   const emailRef = useRef("");
-  const phonenumberRef = useRef(" ");
+  const phonenumberRef = useRef("");
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -15,8 +15,14 @@ const Contact = (props) => {
       phonenumber: phonenumberRef.current.value,
     };
 
+    console.log(newContact);
+    // console.log(response);
+    nameRef.current.value = "";
+    emailRef.current.value = "";
+    phonenumberRef.current.value = "";
+
     const response = await fetch(
-      "https://create-http-8fc2f-default-rtdb.firebaseio.com/contact.json",
+      "https://http-ecommerce-a7fae-default-rtdb.firebaseio.com/contact.json",
       {
         method: "POST",
         body: JSON.stringify(newContact),
@@ -25,7 +31,9 @@ const Contact = (props) => {
         },
       }
     );
-    alert("thank you we will get back to you");
+
+    alert("Thank You We will Get Back to You");
+
     console.log(newContact);
     console.log(response);
     nameRef.current.value = "";
@@ -74,5 +82,4 @@ const Contact = (props) => {
     </div>
   );
 };
-
 export default Contact;

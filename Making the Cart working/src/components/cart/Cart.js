@@ -1,26 +1,6 @@
 import React, { useContext } from "react";
 import cartContext from "../../storage/CartContext";
 
-// const cartElements = [
-//   {
-//     title: "Colors",
-//     price: 100,
-//     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-//   },
-//   {
-//     title: "Black and white Colors",
-//     price: 50,
-//     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-//     quantity: 3,
-//   },
-//   {
-//     title: "Yellow and Black Colors",
-//     price: 70,
-//     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-//     quantity: 1,
-//   },
-// ];
-
 const Cart = (props) => {
   const cartCtx = useContext(cartContext);
   const totalAmount = `$${cartCtx.totalAmount}`;
@@ -29,23 +9,93 @@ const Cart = (props) => {
     <div
       onClose={props.onClose}
       style={{
-        position: "fixed",
+        position: "absolute",
         display: "flex",
         margin: "0px",
         top: "50px",
         height: "95%",
+        width: "30%",
         right: "0",
+        backgroundColor: "white",
         background: "rgb(255,255,255)",
         border: "1px solid rgb(177,103,103)",
       }}
     >
       <div>
-        <h2>CART</h2>
-        <button onClick={props.onClose}>X</button>
-        <div>
-          <span>ITEM</span>
-          <span>PRICE</span>
-          <span>QUANTITY</span>
+        <h2
+          style={{
+            textAlign: "center",
+            marginTop: "10px",
+            fontFamily: "monospace",
+            padding: "10px",
+            margin: "0px",
+            color: "black",
+          }}
+        >
+          CART
+        </h2>
+        <button
+          onClick={props.onClose}
+          style={{
+            margin: "20px",
+            color: "black",
+            // padding: "5px 7px",
+            border: "2px solid black",
+            borderRadius: "5px",
+            cursor: "pointer",
+            position: "absolute",
+            top: "0",
+            right: "0",
+            background: "none",
+            fontSize: "16px",
+            fontWeight: "700",
+          }}
+        >
+          X
+        </button>
+        <div
+          style={{
+            fontSize: "1.2rem",
+            fontWeight: "bold",
+          }}
+        >
+          <span
+            style={{
+              alignItems: "center",
+              borderBottom: "1px solid black",
+              marginRight: "9rem",
+              marginTop: "10px",
+              width: "45%",
+              marginLeft: "20px",
+              marginBottom: "3px",
+            }}
+          >
+            ITEM
+          </span>
+          <span
+            style={{
+              alignItems: "center",
+              borderBottom: "1px solid black",
+              marginRight: "1.5rem",
+              marginTop: "10px",
+              width: "45%",
+              marginLeft: "20px",
+            }}
+          >
+            PRICE
+          </span>
+          <span
+            style={{
+              alignItems: "center",
+              borderBottom: "1px solid black",
+              marginRight: "1.5rem",
+              marginTop: "10px",
+              width: "45%",
+              marginLeft: "20px",
+            }}
+          >
+            QUANTITY
+          </span>
         </div>
         {/* Add your cart item components or logic here */}
         <div>
@@ -59,7 +109,18 @@ const Cart = (props) => {
                 <span>{prod.price}</span>
                 <span>
                   <span>{prod.quantity}</span>
-                  <button>REMOVE</button>
+                  <button
+                    style={{
+                      border: "1px solid red",
+                      padding: "5px 10px",
+                      borderRadius: "5px",
+                      color: "white",
+                      background: "red",
+                      cursor:'pointer',
+                    }}
+                  >
+                    REMOVE
+                  </button>
                 </span>
               </div>
             </div>
@@ -67,14 +128,33 @@ const Cart = (props) => {
         </div>
         <div>
           <span>{totalAmount}</span>
-          <h1>Total</h1>
+          <h1
+            style={{
+              fontWeight: "bold",
+              marginTop: "50px",
+              position: "absolute",
+            }}
+          >
+            Total
+          </h1>
         </div>
         <div>
-          <button>PURCHASE</button>
+          <button
+            style={{
+              margin: "20px",
+              padding: "5px 10px",
+              border: "1px solid black",
+              borderRadius: "5px",
+              cursor: "pointer",
+              color: "white",
+              backgroundColor: "black",
+            }}
+          >
+            PURCHASE
+          </button>
         </div>
       </div>
     </div>
   );
 };
-
 export default Cart;

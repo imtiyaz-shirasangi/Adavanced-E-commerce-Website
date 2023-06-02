@@ -1,6 +1,7 @@
-import React from "react";
+import React , {Button} from "react";
 
-function BottomCartButton() {
+const  BottomCartButton =(props) => {
+
   return (
     <Button
       style={{
@@ -16,5 +17,4 @@ function BottomCartButton() {
     >See the Cart</Button>
   );
 }
-
 export default BottomCartButton;
