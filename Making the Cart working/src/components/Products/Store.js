@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { Container } from "react-bootstrap";
 // import BottomCartButton from "../cart/BottomCartButton";
 import SignContext from "../../storage/Sign-Context";
-import { useHistory } from "react-router-dom/cjs/react-router-dom";
+// import CartContext from "../../storage/CartContext";
+import { useHistory } from "react-router-dom";
 
 const productsArr = [
   {
@@ -37,14 +38,18 @@ const productsArr = [
 
 const Store = (props) => {
   // const cartCtx = useContext(CartContext);
+
   const SignCtx = useContext(SignContext);
   const history = useHistory();
+
   const userEmail = SignCtx.email;
+
   const addItemHandler = (item) => {
     SignCtx.addItem({ ...item, quantity: 1 });
+    console.log(SignCtx);
 
     fetch(
-      `https://crudcrud.com/api/f57a974d43b34bdc846d1382ec03cd3f/cart${userEmail}`,
+      `https://crudcrud.com/api/6aba0653609f4cd6a0ff59c6cc757343/cart${userEmail}`,
       {
         method: "POST",
         body: JSON.stringify(item),
@@ -79,6 +84,7 @@ const Store = (props) => {
               fontWeight: "bold",
               borderRadius: "10%",
               background: "#56CCF2",
+              cursor: "pointer",
             }}
             onClick={() => addItemHandler(prod)}
           >
@@ -99,7 +105,7 @@ const Store = (props) => {
             marginTop: "2rem",
             padding: "0.5rem",
             cursor: "pointer",
-            "hover":{
+            hover: {
               color: "yellow",
             },
           }}

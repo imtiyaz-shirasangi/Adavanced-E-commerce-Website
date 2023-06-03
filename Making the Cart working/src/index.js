@@ -5,6 +5,13 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { SignContextProvider } from "./storage/Sign-Context";
 
+
+//using the bootstrap
+
+// import '../node_modules/react-bootstrap/dist/react-bootstrap';
+
+
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(

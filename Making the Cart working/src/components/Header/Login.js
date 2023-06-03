@@ -4,8 +4,7 @@ import { useHistory } from "react-router-dom";
 import SignContext from "../../storage/Sign-Context";
 
 const Login = () => {
-
-  const authCtx = useContext(SignContext)
+  const authCtx = useContext(SignContext);
 
   const emailInputRef = useRef();
   const passwordInputref = useRef();
@@ -70,6 +69,7 @@ const Login = () => {
       .then((data) => {
         authCtx.login(data.idToken);
         history.replace("/");
+        alert("successfully! Logged In");
       })
       .catch((err) => {
         alert("Aunthentication failed");
@@ -83,7 +83,13 @@ const Login = () => {
       <form onSubmit={submitHandler}>
         <div className={classes.control}>
           <label htmlFor="email">Your Email</label>
-          <input type="email" id="email" required ref={emailInputRef} placeholder="Enter Your Email"/>
+          <input
+            type="email"
+            id="email"
+            required
+            ref={emailInputRef}
+            placeholder="Enter Your Email"
+          />
         </div>
         <div className={classes.control}>
           <label htmlFor="password">Your Password</label>

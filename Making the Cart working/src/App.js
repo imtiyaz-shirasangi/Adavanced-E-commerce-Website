@@ -16,8 +16,6 @@ import { useContext } from "react";
 import SignContext from "./storage/Sign-Context";
 import Store from "./components/Products/Store";
 
-
-
 function App() {
   const [showcart, setShowCart] = useState(false);
   const SignCtx = useContext(SignContext);
@@ -36,14 +34,7 @@ function App() {
     <>
       {showcart && <Cart onClose={hideCartHandler} />}
       <Header onShowCart={showCartHandler} />
-      {/* <main>
-      <ProductsList  onClick={showCartHander}/>
-      </main> */}
 
-      {/* <Route path='/home' element={<Home />} />
-      <Route path='store' element={<ProductsList />} />
-      <Route path='about' element={<About />} />
-      <Route path='/contactus' element={<Contactus />} /> */}
       <main>
         <Switch>
           <Route path="/" exact>

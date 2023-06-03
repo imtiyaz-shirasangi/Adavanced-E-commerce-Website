@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import React, { useContext } from "react";
+// import CartContext from "../../storage/CartContext";
 import SignContext from "../../storage/Sign-Context";
 
 const productArr = [
@@ -38,13 +39,14 @@ const ProductDetail = () => {
   const params = useParams();
   console.log(params);
 
-  const SignCtx = useContext(SignContext);
+  const SigntCtx = useContext(SignContext);
 
   const addItemToCart = (product) => {
-    SignCtx.addItem(product);
+    SigntCtx.addItem(product);
   };
 
   const product = productArr.find((prod) => prod.id === +params.productId);
+
   return (
     <Container style={{ marginTop: "30px", textAlign: "center" }}>
       <div>
@@ -73,15 +75,6 @@ const ProductDetail = () => {
       >
         <span style={{}}>Price: ${product.price}</span>
         <button
-          // style={{
-          //   marginRight: "35%",
-          //   padding: "8px",
-          //   color: "black",
-          //   border: "none",
-          //   fontSize: "1rem",
-          //   fontWeight: "bold",
-          //   borderRadius: "10%",
-          //   background: "#56CCF2",
           style={{
             padding: "6px 12px",
             color: "white",
@@ -96,6 +89,7 @@ const ProductDetail = () => {
         >
           Add to Cart
         </button>
+        
       </div>
     </Container>
   );

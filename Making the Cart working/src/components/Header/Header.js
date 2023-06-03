@@ -1,42 +1,43 @@
 import { Container, Nav, Navbar, Button, NavLink } from "react-bootstrap";
 import React, { useContext } from "react";
-import CartContext from "../../storage/CartContext";
+// import CartContext from "../../storage/CartContext";
 import SignContext from "../../storage/Sign-Context";
 import { useHistory } from "react-router-dom";
 
 const Header = (props) => {
-  const cartCtx = useContext(CartContext);
+  // const cartCtx = useContext(CartContext);
 
   const SignCtx = useContext(SignContext);
   const history = useHistory();
 
-  const numberOfCartItems = cartCtx.items.reduce((currNumber, item) => {
-    return currNumber + item.quantity;
-  }, 0);
-
-  const isLoggedIn = SignCtx.isLoggedIn;
-
-  const loginHandler = () => {
-    SignCtx.login();
-  };
+  // const isLoggedIn = SignCtx.isLoggedIn;
+  const isLoggedIn = SignCtx.token;
 
   const logoutHandler = () => {
     SignCtx.logout();
     history.replace("/Login");
   };
 
+  const numberOfCartItems = SignCtx.items.reduce((currNumber, item) => {
+    return currNumber + item.quantity;
+  }, 0);
+
+  const loginHandler = () => {
+    SignCtx.login();
+  };
+
   return (
     <React.Fragment>
-      <Navbar bg="dark" variant="dark">
+      <Navbar
+        bg="dark"
+        variant="dark"
+        style={{
+          position: "fixed",
+          width: "100%",
+        }}
+      >
         <Container>
-          <Navbar.Brand
-            style={{
-              textAlign: "center",
-              width: "60%",
-              color: "white",
-            }}
-            href="#home"
-          ></Navbar.Brand>
+          <Navbar.Brand></Navbar.Brand>
           <Nav
             className="me-auto"
             style={{
@@ -104,7 +105,7 @@ const Header = (props) => {
                   background: "black",
                   border: "7px solid darkblack",
                   borderRadius: "5px",
-                  color:'white',
+                  color: "white",
                   display: "flex",
                   justifyContent: "end",
                   fontSize: "1rem",
@@ -152,7 +153,7 @@ const Header = (props) => {
                 borderRadius: "3px",
                 display: "flex",
                 justifyContent: "end",
-                color:'white',
+                color: "white",
                 fontSize: "1rem",
                 listStyle: "none",
                 cursor: "pointer",

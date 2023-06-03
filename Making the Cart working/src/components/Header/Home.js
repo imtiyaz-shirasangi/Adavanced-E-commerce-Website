@@ -9,8 +9,8 @@ function Home() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        height: "100vh",
         padding: "20px",
+        margin: "10px",
       }}
     >
       <h2 style={{}}>TOURS</h2>
@@ -19,15 +19,18 @@ function Home() {
           <tr
             style={{
               marginBottom: "10px",
+              padding: "10px",
             }}
           >
             <td>JULY 16</td>
             <td>MUMBAI,IND</td>
             <td>MARINE DRIVE</td>
+
             <button
               style={{
                 backgroundColor: "brown",
-                cursor:'pointer',
+                cursor: "pointer",
+                marginLeft: "20px",
               }}
             >
               BUY TICKET
@@ -37,7 +40,13 @@ function Home() {
             <td>MAY 30</td>
             <td>HOSPET,IND</td>
             <td>ANJANADRI BETTA</td>
-            <button style={{ background: "brown", cursor: "pointer" }}>
+            <button
+              style={{
+                background: "brown",
+                cursor: "pointer",
+                marginLeft: "20px",
+              }}
+            >
               BUY TICKET
             </button>
           </tr>
@@ -45,7 +54,13 @@ function Home() {
             <td>OCT 5</td>
             <td>GOA,IND</td>
             <td>MAGA BEACH</td>
-            <button style={{ background: "brown", cursor: "pointer" }}>
+            <button
+              style={{
+                background: "brown",
+                cursor: "pointer",
+                marginLeft: "20px",
+              }}
+            >
               BUY TICKET
             </button>
           </tr>
@@ -53,7 +68,13 @@ function Home() {
             <td>APR 16</td>
             <td>UTTRAKHAND,IND</td>
             <td>KEDARNATH</td>
-            <button style={{ background: "brown", cursor: "pointer" }}>
+            <button
+              style={{
+                background: "brown",
+                cursor: "pointer",
+                marginLeft: "20px",
+              }}
+            >
               BUY TICKET
             </button>
           </tr>
@@ -61,7 +82,13 @@ function Home() {
             <td>AUG 2</td>
             <td>LAS VEGAS, NV</td>
             <td>T-MOBILE ARENA</td>
-            <button style={{ background: "brown", cursor: "pointer" }}>
+            <button
+              style={{
+                background: "brown",
+                cursor: "pointer",
+                marginLeft: "20px",
+              }}
+            >
               BUY TICKET
             </button>
           </tr>
@@ -70,7 +97,15 @@ function Home() {
             <td>AUG 7</td>
             <td>CONCORD,CA</td>
             <td>CONCORD PAVILION</td>
-            <button style={{ background: "brown" ,cursor:'pointer' }}>BUY TICKET</button>
+            <button
+              style={{
+                background: "brown",
+                cursor: "pointer",
+                marginLeft: "20px",
+              }}
+            >
+              BUY TICKET
+            </button>
           </tr>
           <br></br>
           <br></br>

@@ -3,8 +3,6 @@ import { Container } from "react-bootstrap";
 import BottomCartButton from "../cart/BottomCartButton";
 import CartContext from "../../storage/CartContext";
 
-
-
 const productsArr = [
   {
     id: 1,
@@ -37,15 +35,12 @@ const productsArr = [
 ];
 
 const ProductsList = (props) => {
+  const cartCtx = useContext(CartContext);
 
-  const cartCtx=useContext(CartContext);
+  const addItemHandler = (item) => {
+    cartCtx.addItem({ ...item });
+  };
 
-
-  const addItemHandler=item=>{
-    cartCtx.addItem({...item})
-  }
-
-  
   const product = productsArr.map((prod) => (
     <div
       key={prod.id}
@@ -80,7 +75,7 @@ const ProductsList = (props) => {
             src={prod.imageUrl}
             alt={prod.title}
             style={{
-              // transformOrigin: "center center",
+              transformOrigin: "center center",
               objectFit: "cover",
               padding: "0px",
               margin: "0px",
@@ -101,9 +96,9 @@ const ProductsList = (props) => {
           }}
         >
           <span> ${prod.price}</span>
-          <button onClick={()=>addItemHandler(prod)}
+          <button
+            onClick={() => addItemHandler(prod)}
             style={{
-              
               padding: "8px",
               color: "white",
               border: "none",
@@ -121,9 +116,7 @@ const ProductsList = (props) => {
   ));
 
   return (
-    <Container
-      style={{ marginTop: "10px", textAlign: "center" }}
-    >
+    <Container style={{ marginTop: "10px", textAlign: "center" }}>
       <h1
         style={{
           fontFamily: "metal mania",
@@ -131,15 +124,13 @@ const ProductsList = (props) => {
           padding: "20px",
           fontSize: "30px",
           fontWeight: "bold",
-          fontStyle:"oblique"
+          fontStyle: "oblique",
         }}
       >
         MUSIC
       </h1>
       <div> {product} </div>
       <BottomCartButton onClick={props.onClick} />
-      
-      
     </Container>
   );
 };
